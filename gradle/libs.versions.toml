@@ -1,5 +1,6 @@
 [versions]
 agp = "8.6.1"
+animation = "1.7.6"
 kotlin = "1.9.0"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -11,6 +12,7 @@ composeBom = "2024.04.01"
 appcompat = "1.7.0"
 material = "1.12.0"
 junitJupiter = "5.10.0"
+materialIconsExtended = "1.7.6"
 mockitoKotlin = "5.4.0"
 mockitoCore = "5.12.0"
 kotlinxCoroutinesTest = "1.7.3"
@@ -26,7 +28,9 @@ compose_compiler = "2.0.21"
 
 
 [libraries]
+androidx-animation = { module = "androidx.compose.animation:animation", version.ref = "animation" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }

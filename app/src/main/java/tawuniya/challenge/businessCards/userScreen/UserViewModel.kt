@@ -37,9 +37,25 @@ class UserViewModel @Inject constructor(
     }
 
     private fun toggleLike(userId: Long, isLiked: Boolean) {
-        viewModelScope.launch {
-            likeUserUseCase(userId, isLiked)
-            fetchUsers() // Refresh the list
+        val currentState = _uiState.value
+        if (currentState is UserScreenState.Success) {
+            val updatedUsers = currentState.users.map { user ->
+                if (user.id == userId) user.copy(isLiked = !isLiked) else user
+            }
+            _uiState.value = UserScreenState.Success(updatedUsers)
+
+            // Perform the actual operation in the background
+            viewModelScope.launch {
+                try {
+                    likeUserUseCase(userId, isLiked)
+                } catch (e: Exception) {
+                    // Revert the change if the operation fails
+                    val revertedUsers = updatedUsers.map { user ->
+                        if (user.id == userId) user.copy(isLiked = isLiked) else user
+                    }
+                    _uiState.value = UserScreenState.Success(revertedUsers)
+                }
+            }
         }
     }
 }

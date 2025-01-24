@@ -2,6 +2,7 @@ package tawuniya.challenge.data.repository
 
 import tawuniya.challenge.data.dataSource.remote.ApiService
 import tawuniya.challenge.data.mappers.UserDataMapper
+import tawuniya.challenge.data.utils.safeApiCall
 import tawuniya.challenge.domain.entity.UserData
 import tawuniya.challenge.domain.repository.UserRepository
 import tawuniya.challenge.domain.repository.UserStorage
@@ -14,7 +15,7 @@ class UserRepositoryImpl(
 
     override suspend fun fetchUserData(): Result<List<UserData>> {
         return try {
-            val response = userApiService.getUsers()
+            val response = safeApiCall { userApiService.getUsers() }
             if (response.isSuccessful) {
                 val remoteUsers = response.body() ?: emptyList()
                 val mappedUsers = userDataMapper.toDomain(remoteUsers)
