@@ -8,6 +8,7 @@ plugins {
 android {
     namespace = "tawuniya.challenge.data"
     compileSdk = 35
+    val baseUrl = project.findProperty("BASE_URL") ?: ""
 
     defaultConfig {
         minSdk = 24
@@ -23,6 +24,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "BASE_URL", "\"${baseUrl}\"")
         }
     }
     compileOptions {
