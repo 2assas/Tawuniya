@@ -8,5 +8,6 @@ data class UserData(
     val email: String?,
     val phone: String?,
     val website: String?,
-    val address: String?
+    val address: String?,
+    val isLiked: Boolean = false
 )
