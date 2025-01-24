@@ -12,6 +12,8 @@ import tawuniya.challenge.data.mappers.UserDataMapper
 import tawuniya.challenge.data.repository.UserRepositoryImpl
 import tawuniya.challenge.domain.repository.UserRepository
 import tawuniya.challenge.domain.repository.UserStorage
+import tawuniya.challenge.domain.useCase.FetchUserDataUseCase
+import tawuniya.challenge.domain.useCase.LikeUserUseCase
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -34,5 +36,15 @@ object AppModule {
         userDataMapper: UserDataMapper
     ): UserRepository {
         return UserRepositoryImpl(apiService, userStorage, userDataMapper)
+    }
+
+    @Provides
+    fun provideFetchUserDataUseCase(userRepository: UserRepository): FetchUserDataUseCase {
+        return FetchUserDataUseCase(userRepository)
+    }
+
+    @Provides
+    fun provideLikeUserUseCase(userRepository: UserRepository): LikeUserUseCase {
+        return LikeUserUseCase(userRepository)
     }
 }
