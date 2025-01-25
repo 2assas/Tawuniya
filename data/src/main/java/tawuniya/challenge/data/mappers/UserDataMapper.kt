@@ -23,7 +23,7 @@ class UserDataMapper : Mapper<List<UserDataRemote.UserDataRemoteItem?>, List<Use
 
 private fun formatAddress(address: UserDataRemote.UserDataRemoteItem.Address?): String {
     return address?.let {
-        "${it.street.orEmpty()}, ${it.suite.orEmpty()}, ${it.city.orEmpty()}}"
+        "${it.street.orEmpty()}, ${it.suite.orEmpty()}, ${it.city.orEmpty()}"
     } ?: "N/A"
 }
 
