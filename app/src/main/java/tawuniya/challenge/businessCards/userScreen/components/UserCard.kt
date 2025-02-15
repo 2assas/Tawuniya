@@ -65,8 +65,7 @@ fun UserCard(
                 Text(
                     text = user.name ?: "Unknown",
                     fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp,
-                    color = Color.Black
+                    fontSize = 18.sp
                 )
                 IconButton(
                     onClick = {
@@ -140,7 +139,6 @@ fun UserDetailItem(
             Spacer(modifier = Modifier.width(8.dp))
             Text(
                 text = value,
-                color = Color.Black,
                 fontSize = 14.sp
             )
         }

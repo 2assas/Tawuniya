@@ -4,7 +4,7 @@ import tawuniya.challenge.data.models.UserDataRemote
 import tawuniya.challenge.domain.entity.UserData
 import tawuniya.challenge.domain.repository.Mapper
 
-class UserDataMapper : Mapper<List<UserDataRemote.UserDataRemoteItem?>, List<UserData>> {
+object UserDataMapper : Mapper<List<UserDataRemote.UserDataRemoteItem?>, List<UserData>> {
     override fun toDomain(dto: List<UserDataRemote.UserDataRemoteItem?>) =
         dto.map { remoteItem ->
             UserData(

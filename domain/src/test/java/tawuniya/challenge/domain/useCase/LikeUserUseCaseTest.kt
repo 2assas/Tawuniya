@@ -1,6 +1,5 @@
 package tawuniya.challenge.domain.useCase
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.times
@@ -11,14 +10,9 @@ import org.mockito.kotlin.never
 import tawuniya.challenge.domain.repository.UserRepository
 
 class LikeUserUseCaseTest {
-    private lateinit var userRepository: UserRepository
-    private lateinit var likeUserUseCase: LikeUserUseCase
 
-    @BeforeEach
-    fun setup() {
-        userRepository = mock() // Create a mock of UserRepository
-        likeUserUseCase = LikeUserUseCase(userRepository) // Initialize the use case
-    }
+    private val userRepository: UserRepository = mock(UserRepository::class.java)
+    private val likeUserUseCase = LikeUserUseCase(userRepository)
 
     @Test
     fun `should handle invalid user ID`() = runTest {
